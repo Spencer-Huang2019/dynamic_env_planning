@@ -1,0 +1,11 @@
+bool start
+
+---
+
+# Define the result, only send once
+bool error_code
+
+---
+
+# Define the feedback message, anytime
+bool feedback

@@ -1,0 +1,8 @@
+# This service contains the definition for a request to the motion
+# planner and the output it provides
+
+MotionPlanMultiRequest motion_plan_request
+
+---
+
+MotionPlanMultiResponse motion_plan_response

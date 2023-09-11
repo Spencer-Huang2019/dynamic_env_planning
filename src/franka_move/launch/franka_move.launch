@@ -1,0 +1,25 @@
+<launch>
+  <!-- specify the planning pipeline -->
+  <arg name="pipeline" default="ompl" />
+
+  <!-- Panda specific options -->
+  <arg name="load_gripper" default="true" />
+
+  <!-- Gazebo specific options -->
+  <arg name="use_rviz" default="true" />
+
+<!--  <param name="resample_dt_" value="0.1" />-->
+  <arg name="transmission" />
+
+  <include file="$(find panda_moveit_config)/launch/demo.launch" pass_all_args="true">
+    <!-- robot description is loaded by gazebo.launch, to enable Gazebo features -->
+    <arg name="load_robot_description" value="true" />
+    <arg name="use_rviz" default="$(arg use_rviz)" />
+    <!-- MoveItSimpleControllerManager provides ros_control's JointTrajectory controllers
+         as well as GripperCommand actions -->
+    <arg name="moveit_controller_manager" value="fake" />
+  </include>
+
+<!--  <node name="franka_move_python" pkg="franka_move" type="franka_move_interface.py" output="screen" />-->
+
+</launch>

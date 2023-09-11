@@ -1,0 +1,2 @@
+shape_msgs/SolidPrimitive primitive
+geometry_msgs/Pose pose

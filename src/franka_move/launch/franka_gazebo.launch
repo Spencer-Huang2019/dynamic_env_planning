@@ -1,0 +1,38 @@
+<launch>
+  <!-- specify the planning pipeline -->
+  <arg name="pipeline" default="ompl" />
+  <arg name="adapter" default="AddStopp" />
+
+  <!-- Panda specific options -->
+  <arg name="load_gripper" default="true" />
+  <arg name="transmission" default="effort" />
+
+  <!-- Gazebo specific options -->
+  <arg name="gazebo_gui" default="false" />
+  <arg name="paused" default="false" />
+  <arg name="use_rviz" default="true" />
+
+  <param name="group_name" value="panda_arm" />
+
+  <!-- Launch the gazebo simulator and spawn the robot -->
+  <include file="$(find franka_gazebo)/launch/panda.launch" pass_all_args="true">
+    <arg name="headless" value="$(eval not arg('gazebo_gui'))" />
+    <arg name="use_gripper" default="$(arg load_gripper)" />
+    <arg name="controller" default="$(arg transmission)_joint_trajectory_controller" />
+<!--    <arg name="world" value="$(find franka_move)/worlds/animated_box.world" />-->
+  </include>
+
+  <include file="$(find panda_moveit_config)/launch/demo.launch" pass_all_args="true">
+    <!-- robot description is loaded by gazebo.launch, to enable Gazebo features -->
+    <arg name="load_robot_description" value="false" />
+    <arg name="use_rviz" default="$(arg use_rviz)" />
+    <arg name="pipeline" value="$(arg pipeline)" />
+    <arg name="adapter" value="$(arg adapter)" />
+    <!-- MoveItSimpleControllerManager provides ros_control's JointTrajectory controllers
+         as well as GripperCommand actions -->
+    <arg name="moveit_controller_manager" value="simple" />
+  </include>
+
+<!--  <node name="franka_move_python" pkg="franka_move" type="franka_move_interface.py" output="screen" />-->
+
+</launch>

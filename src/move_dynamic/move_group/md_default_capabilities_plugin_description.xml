@@ -1,0 +1,15 @@
+<library path="libmove_dynamic_move_group_default_capabilities">
+
+  <class name="move_group/MoveDynamicPlanningService" type="move_group::MoveDynamicPlanningService" base_class_type="move_group::MoveDynamicCapability">
+    <description>
+      Provide a capability that Planning the global and local trajectories.
+    </description>
+  </class>
+
+  <class name="move_group/MoveDynamicExecuteWptsAction" type="move_group::MoveDynamicExecuteWptsAction" base_class_type="move_group::MoveDynamicCapability">
+    <description>
+      Provide a capability that publishes waypoints to controller.
+    </description>
+  </class>
+
+</library>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>move_dynamic</name>
+  <version>0.0.0</version>
+  <description>Meta package that contains all essential package of MoveDynamic. </description>
+  <maintainer email="spencer@todo.todo">spencer</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>move_dynamic_planning_interface</exec_depend>
+  <exec_depend>move_dynamic_commander</exec_depend>
+  <exec_depend>move_dynamic_move_group</exec_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

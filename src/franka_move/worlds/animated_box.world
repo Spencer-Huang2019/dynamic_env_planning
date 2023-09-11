@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+   <world name="default">
+      <!-- A ground plane -->
+      <include>
+         <uri>model://ground_plane</uri>
+      </include>
+      <!-- A global light source -->
+      <include>
+         <uri>model://sun</uri>
+      </include>
+
+      <model name="box_collision_model" >
+         <pose>0 0 0 0 0 0</pose>
+         <static>true</static>
+         <link name="link">
+            <collision name="link">
+               <pose>0 0 0 0 0 0</pose>
+               <geometry>
+                  <box>
+                     <size>.1 .1 .1</size>
+                  </box>
+               </geometry>
+            </collision>
+         </link>
+      </model>
+
+<!--      An actor-->
+      <actor name="animated_box">
+         <link name="link">
+            <visual name="visual">
+               <geometry>
+                  <box>
+                     <size>.1 .1 .1</size>
+                  </box>
+               </geometry>
+            </visual>
+         </link>
+
+         <script>
+            <loop>true</loop>
+            <delay_start>0.000000</delay_start>
+            <auto_start>true</auto_start>
+            <trajectory id="0" type="square">
+               <waypoint>
+                  <time>0.0</time>
+                  <pose>5.50e-01 -2.11e-01 4.60e-01 0 0 0</pose>
+               </waypoint>
+               <waypoint>
+                  <time>0.5</time>
+                  <pose>5.50e-01 -2.11e-01 4.60e-01 0 0 0</pose>
+               </waypoint>
+            </trajectory>
+         </script>
+
+         <plugin name="attach_model" filename="libAttachModelPlugin.so">
+            <link>
+               <link_name>link</link_name>
+               <model>
+                  <model_name>box_collision_model</model_name>
+               </model>
+            </link>
+         </plugin>
+      </actor>
+   </world>
+</sdf>

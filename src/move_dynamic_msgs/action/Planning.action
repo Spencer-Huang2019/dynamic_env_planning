@@ -1,0 +1,21 @@
+# Define the goal
+float64[] joint_goal
+bool replanning
+float64 resample_dt
+float64 scaling_factor
+moveit_msgs/RobotState start_state
+string planner_id
+# The obstacles which needed to add into planning scene
+Obstacle[] obstacles
+
+float64[] max_vel
+float64[] max_acc
+float64[] max_jerk
+---
+
+# Define the result, only send once
+bool error_code
+---
+
+# Define the feedback message, anytime
+bool feedback
