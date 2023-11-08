@@ -3,7 +3,7 @@
 
   <!-- specify the planning pipeline -->
   <arg name="pipeline" default="ompl" />
-  <arg name="adapter" default="AddStopp" />
+  <arg name="adapter" default="AddTimeParameterization" />
 
   <!-- By default, we do not start a database (it can be large) -->
   <arg name="db" default="false" />

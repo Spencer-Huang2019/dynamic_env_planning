@@ -11,8 +11,7 @@ import argparse
 from scipy.interpolate import CubicSpline
 import geometry_msgs.msg, shape_msgs.msg
 import moveit_commander
-from my_db import DbManagement
-from moveit_msgs.msg import JointLimits
+
 
 def dict2namespace(config):
     namespace = argparse.Namespace()
@@ -176,30 +175,14 @@ class MoveDynamicPythonInterface(object):
 
         scene.remove_world_object()
 
-        self.move_dynamic = move_dynamic
-        self.scene = scene
-        self.connection = DbManagement()
-
         self.resample_dt = 0.09
         self.scaling_factor = 0.5
-        self.global_planner_id = "RRTConnect"
-        self.local_planner_id = "ERRTConnect"
-        self.joint_goals = [-0.2244, 0.6672, -0.5111, -2.4468, -0.1701, 3.6322, 0.8989]
-        self.has_max_vel = False
-        self.has_max_acc = False
-        self.has_max_jerk = False
-        self.max_vel = None
-        self.max_acc = None
-        self.max_jerk = None
+        self.move_dynamic = move_dynamic
+        self.scene = scene
 
     def run_planning(self, replanning=True, joint_goal=None):
-        # if not self.load_data_res:
-        #     return False
-
-        if joint_goal is None:
-            joint_goal = self.joint_goals
         # global planning
-        params = self.get_params(replanning)
+        params = self.get_params(replanning, joint_goal=joint_goal, resample_dt=self.resample_dt, scaling_factor=self.scaling_factor)
         result = self.move_dynamic.plan(params)
 
         return result
@@ -209,27 +192,18 @@ class MoveDynamicPythonInterface(object):
         for (box_pose, box_size) in obstacles:
             self.add_one_box(box_pose, box_size)
 
-    def get_params(self, replanning):
+    def get_params(self, replanning, joint_goal=None, resample_dt=None, scaling_factor=None):
         params = {}
         if replanning:
             params['replanning'] = True
-            params['planner_id'] = self.local_planner_id
+            params['planner_id'] = "ERRTConnect"
         else:
             params['replanning'] = False
-            params['planner_id'] = self.global_planner_id
-            params['joint_position'] = self.joint_goals
+            params['planner_id'] = "RRTConnect"
+            params['joint_position'] = joint_goal
 
-        if self.has_max_vel:
-            params['max_vel'] = self.max_vel
-
-        if self.has_max_acc:
-            params['max_acc'] = self.max_acc
-
-        if self.has_max_jerk:
-            params['max_jerk'] = self.max_jerk
-
-        params['resample_dt'] = self.resample_dt
-        params['scaling_factor'] = self.scaling_factor
+        params['resample_dt'] = resample_dt
+        params['scaling_factor'] = scaling_factor
 
         return params
 
@@ -270,8 +244,10 @@ def generate_new_problem(seed=9):
 
 
 if __name__ == '__main__':
+
     dynamic_planning = MoveDynamicPythonInterface()
 
+    joint_goal1 = [-0.2244, 0.6672, -0.5111, -2.4468, -0.1701, 3.6322, 0.8989]
     joint_goal2 = [-0.00015, -0.78555, 7.7980e-05, -2.35599, 4.47189e-05, 1.571559, 0.785379]
 
     """ adding obstacles """
@@ -281,20 +257,19 @@ if __name__ == '__main__':
     dynamic_planning.add_obstacles(obstacles)
 
     """ run global planning """
-    plan_glo_ret = dynamic_planning.run_planning(replanning=False)
+    plan_glo_ret = dynamic_planning.run_planning(replanning=False, joint_goal=joint_goal1)
 
-    """ adding obstacles """
-    box_pose = [0.3, 0.0, 0.9, 0, 0, 0, 1]
-    box_size = [0.1, 0.1, 0.1]
-    obstacles = [(box_pose, box_size)]
-    dynamic_planning.add_obstacles(obstacles)
+    # """ adding obstacles """
+    # box_pose = [0.3, 0.0, 0.9, 0, 0, 0, 1]
+    # box_size = [0.1, 0.1, 0.1]
+    # obstacles = [(box_pose, box_size)]
+    # dynamic_planning.add_obstacles(obstacles)
 
-    """ run local planning """
-    if plan_glo_ret:
-        plan_loc_ret = dynamic_planning.run_planning(replanning=True)
-
-    time.sleep(3)
-    """ run global planning """
-    dynamic_planning.run_planning(replanning=False, joint_goal=joint_goal2)
+    # """ run local planning """
+    # if plan_glo_ret:
+    #     plan_loc_ret = dynamic_planning.run_planning(replanning=True)
+    #
+    # """ run global planning """
+    # dynamic_planning.run_planning(replanning=False, joint_goal=joint_goal2)
 
 # draw_trajs()

@@ -238,7 +238,7 @@ bool ToppraGeneration::callToppraPython(std::vector<std::vector<double>>& points
 //    py::scoped_interpreter python;
 
     py::module sys = py::module::import("sys");
-    sys.attr("path").attr("append")("/home/spencer/workspaces/dynamic_env_planning_ws/src/topp/toppra-python/toppra");
+    sys.attr("path").attr("append")("/home/spencer/workspaces/dynamic_env_planning/src/topp/toppra-python/toppra");
     py::module toppra = py::module::import("toppra_entrance");
 
     py::object result = toppra.attr("call_toppra")(points,

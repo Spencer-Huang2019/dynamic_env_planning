@@ -103,7 +103,7 @@ public:
         int start_index = res.start_index_;
 
         move_dynamic::WriteTrajectory write_file;
-        std::string dir = "/home/spencer/workspaces/dynamic_env_planning_ws/src/franka_move/files/local_traj/";
+        std::string dir = "/home/spencer/workspaces/dynamic_env_planning/src/franka_move/files/local_traj/";
         std::string filename = dir + "local_traj_after_RRT.yaml";
         write_file.writeTrajectoryMsg2Yaml(res.trajectories_[start_index], filename);
 

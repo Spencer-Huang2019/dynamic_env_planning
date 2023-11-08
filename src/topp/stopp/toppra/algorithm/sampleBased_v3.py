@@ -65,6 +65,7 @@ class SamplingAlgorithmV3(ParameterizationAlgorithm):
             X_unvisited = self.get_random_samples(i, V_open)
             if len(X_unvisited) == 0:
                 print('No solution found at stage {}!'.format(i))
+                break
             else:
                 valid_nodes = []
                 l_Xun = len(X_unvisited)
@@ -142,7 +143,9 @@ class SamplingAlgorithmV3(ParameterizationAlgorithm):
 
         delta = (x_upper - x_lower)
 
-        if delta < 0:
+        print(delta)
+
+        if delta < 1e-7:
             return None
         else:
             rnds = []
@@ -151,7 +154,7 @@ class SamplingAlgorithmV3(ParameterizationAlgorithm):
             # random_nos = random.sample(range(1, 200), self.n_samples)
             for random_no in random_nos:
                 x = x_lower + random_no * 1.0 / self.n_samples * delta
-                if x > 1e-5:
+                if x > 1e-7:
                     rnds.append(x)
             # rnds.append(x_lower + random_no / 199 * delta)
 

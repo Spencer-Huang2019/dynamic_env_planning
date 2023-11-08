@@ -4,7 +4,7 @@ project(file_operation_tools)
 
 set(CMAKE_CXX_STANDARD 14)
 set(FILE_OPT_TOOLS_LIBS file_operation_tools_library)
-set(YAML_CPP_LIBS /home/spencer/workspaces/dynamic_env_planning_ws/src/move_dynamic/tools/yaml-cpp/build/libyaml-cpp.so)
+set(YAML_CPP_LIBS /home/spencer/workspaces/dynamic_env_planning/src/move_dynamic/tools/yaml-cpp/build/libyaml-cpp.so)
 
 find_package(catkin REQUIRED COMPONENTS
         moveit_msgs
@@ -17,7 +17,7 @@ catkin_package(
         LIBRARIES ${FILE_OPT_TOOLS_LIBS}
 )
 
-include_directories(include /home/spencer/workspaces/dynamic_env_planning_ws/src/move_dynamic/tools/yaml-cpp/include)
+include_directories(include /home/spencer/workspaces/dynamic_env_planning/src/move_dynamic/tools/yaml-cpp/include)
 include_directories(SYSTEM
         ${catkin_INCLUDE_DIRS}
         )

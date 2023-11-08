@@ -16,9 +16,9 @@
 constexpr char LOGNAME[] = "Planning_Capability";
 
 move_dynamic::WriteTrajectory write_file;
-std::string dir1 = "/home/spencer/workspaces/dynamic_env_planning_ws/src/franka_move/files/global_traj/";
-std::string dir2 = "/home/spencer/workspaces/dynamic_env_planning_ws/src/franka_move/files/local_traj/";
-std::string dir3 = "/home/spencer/workspaces/dynamic_env_planning_ws/src/franka_move/files/combine_traj/";
+std::string dir1 = "/home/spencer/workspaces/dynamic_env_planning/src/franka_move/files/global_traj/";
+std::string dir2 = "/home/spencer/workspaces/dynamic_env_planning/src/franka_move/files/local_traj/";
+std::string dir3 = "/home/spencer/workspaces/dynamic_env_planning/src/franka_move/files/combine_traj/";
 
 namespace move_group
 {

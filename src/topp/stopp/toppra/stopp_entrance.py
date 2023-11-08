@@ -8,7 +8,7 @@ path subject to kinematic constraints. This is very simple to do with
 """
 
 import sys
-sys.path.append("/home/spencer/workspaces/dynamic_env_planning_ws/src/topp/stopp")
+sys.path.append("/home/spencer/workspaces/dynamic_env_planning/src/topp/stopp")
 
 import toppra as ta
 import toppra.constraint as constraint

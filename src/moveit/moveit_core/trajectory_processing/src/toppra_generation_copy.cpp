@@ -33,7 +33,7 @@ bool ToppraGeneration::runToppra(robot_trajectory::RobotTrajectory& trajectory, 
     }
 
     PyRun_SimpleString("import sys");
-    PyRun_SimpleString("sys.path.append('/home/spencer/workspaces/dynamic_env_planning_ws/src/topp/toppra-python/toppra')")
+    PyRun_SimpleString("sys.path.append('/home/spencer/workspaces/dynamic_env_planning/src/topp/toppra-python/toppra')")
 
     PyObject* pModule = PyImport_ImportModule("toppra_entrance");
 

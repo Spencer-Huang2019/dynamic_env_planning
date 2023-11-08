@@ -1,5 +1,5 @@
 set(MOVEIT_LIB_NAME moveit_trajectory_processing)
-#set(TOPPRA_LIBS /home/spencer/workspaces/dynamic_env_planning_ws/build/toppra/src/libtoppra.so)
+#set(TOPPRA_LIBS /home/spencer/workspaces/dynamic_env_planning/build/toppra/src/libtoppra.so)
 
 add_library(${MOVEIT_LIB_NAME}
   src/iterative_time_parameterization.cpp

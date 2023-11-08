@@ -13,7 +13,7 @@ find_package(Eigen3 REQUIRED)
 
 add_library(${MOVE_DYNAMIC_LIB_NAME} ${SOURCE_FILE})
 set_target_properties(${MOVE_DYNAMIC_LIB_NAME} PROPERTIES VERSION "${${PROJECT_NAME}_VERSION}")
-set(TOPPRA_LIBS /home/spencer/workspaces/dynamic_env_planning_ws/build/toppra/src/libtoppra.so)
+set(TOPPRA_LIBS /home/spencer/workspaces/dynamic_env_planning/build/toppra/src/libtoppra.so)
 target_link_libraries(${MOVE_DYNAMIC_LIB_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${TOPPRA_LIBS})
 
 catkin_package(
@@ -22,7 +22,7 @@ catkin_package(
 
 )
 
-include_directories(include /home/spencer/workspaces/dynamic_env_planning_ws/devel/include)
+include_directories(include /home/spencer/workspaces/dynamic_env_planning/devel/include)
 include_directories(SYSTEM
         ${catkin_INCLUDE_DIRS}
         ${Boost_INCLUDE_DIRS}

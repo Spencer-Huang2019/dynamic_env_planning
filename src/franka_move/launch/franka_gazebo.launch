@@ -15,24 +15,24 @@
   <param name="group_name" value="panda_arm" />
 
   <!-- Launch the gazebo simulator and spawn the robot -->
-  <include file="$(find franka_gazebo)/launch/panda.launch" pass_all_args="true">
-    <arg name="headless" value="$(eval not arg('gazebo_gui'))" />
-    <arg name="use_gripper" default="$(arg load_gripper)" />
-    <arg name="controller" default="$(arg transmission)_joint_trajectory_controller" />
-<!--    <arg name="world" value="$(find franka_move)/worlds/animated_box.world" />-->
-  </include>
+<!--  <include file="$(find franka_gazebo)/launch/panda.launch" pass_all_args="true">-->
+<!--    <arg name="headless" value="$(eval not arg('gazebo_gui'))" />-->
+<!--    <arg name="use_gripper" default="$(arg load_gripper)" />-->
+<!--    <arg name="controller" default="$(arg transmission)_joint_trajectory_controller" />-->
+<!--&lt;!&ndash;    <arg name="world" value="$(find franka_move)/worlds/animated_box.world" />&ndash;&gt;-->
+<!--  </include>-->
 
   <include file="$(find panda_moveit_config)/launch/demo.launch" pass_all_args="true">
     <!-- robot description is loaded by gazebo.launch, to enable Gazebo features -->
-    <arg name="load_robot_description" value="false" />
+    <arg name="load_robot_description" value="true" />
     <arg name="use_rviz" default="$(arg use_rviz)" />
     <arg name="pipeline" value="$(arg pipeline)" />
     <arg name="adapter" value="$(arg adapter)" />
     <!-- MoveItSimpleControllerManager provides ros_control's JointTrajectory controllers
          as well as GripperCommand actions -->
-    <arg name="moveit_controller_manager" value="simple" />
+    <arg name="moveit_controller_manager" value="fake" />
   </include>
 
-<!--  <node name="franka_move_python" pkg="franka_move" type="franka_move_interface.py" output="screen" />-->
+  <node name="move_dynamic_move_group" pkg="move_dynamic_move_group" type="move_dynamic" output="screen" />
 
 </launch>

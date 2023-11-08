@@ -287,7 +287,7 @@ bool StoppGeneration::stoppAlgorithm(std::vector<std::vector<double>>& points, s
 //    py::scoped_interpreter python;
 
     py::module sys = py::module::import("sys");
-    sys.attr("path").attr("append")("/home/spencer/workspaces/dynamic_env_planning_ws/src/topp/stopp/toppra");
+    sys.attr("path").attr("append")("/home/spencer/workspaces/dynamic_env_planning/src/topp/stopp/toppra");
     py::module stopp = py::module::import("stopp_entrance");
 
     py::object result = stopp.attr("call_stopp")(points,

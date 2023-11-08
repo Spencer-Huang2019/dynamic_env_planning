@@ -3,7 +3,7 @@
   <arg name="debug" default="false" />
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
-  <arg name="franka_config" default="/home/spencer/workspaces/dynamic_env_planning_ws/src/franka_move/config" />
+  <arg name="franka_config" default="/home/spencer/workspaces/dynamic_env_planning/src/franka_move/config" />
 
   <!--Retrieve the right rviz config file-->
   <arg name="rviz_tutorial" default="false" />
